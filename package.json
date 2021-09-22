@@ -1,0 +1,47 @@
+{
+  "name": "raw-vite-app",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "lint": "pnpm lint:cc && pnpm lint:es && pnpm lint:ts",
+    "lint:fix": "pnpm lint:es -- --fix",
+    "lint:es": "eslint --ext .ts,.tsx src --max-warnings 0",
+    "lint:ts": "tsc",
+    "lint:cc": "madge -c --extensions ts,tsx --ts-config tsconfig.json --no-spinner src/",
+    "test": "jest --color --coverage"
+  },
+  "dependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@testing-library/react": "^12.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.9.6",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "babel-jest": "^27.1.1",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "^27.1.1",
+    "madge": "^5.0.1",
+    "prettier": "^2.4.0",
+    "sass": "^1.39.0",
+    "spy4js": "^3.1.5",
+    "typescript": "^4.3.2",
+    "vite": "^2.5.4"
+  }
+}

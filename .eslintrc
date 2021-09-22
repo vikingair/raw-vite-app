@@ -1,0 +1,75 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "import",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "prettier/prettier": "warn",
+    "arrow-body-style": [
+      "warn",
+      "as-needed"
+    ],
+    "no-console": "warn",
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "import/no-commonjs": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "**/build/*",
+          "**/dist/*",
+          "**/app-*/*",
+          "**/shared-*/*",
+          "@shared/*/*"
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.ts?(x)"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    },
+    {
+      "files": [
+        "**/*.test.ts?(x)"
+      ],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    }
+  ]
+}
