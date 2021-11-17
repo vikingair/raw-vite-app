@@ -1,10 +1,10 @@
 import fs from 'fs';
 
 const THRESHOLDS = {
-    statements: 55,
-    branches: 42,
-    functions: 44,
-    lines: 59,
+    statements: 64,
+    branches: 60,
+    functions: 59,
+    lines: 64,
 };
 const setupTestsUsesJSX = fs.existsSync('./setupTests.tsx');
 
@@ -16,16 +16,7 @@ export default {
     collectCoverageFrom: ['src/**/*.ts?(x)', '!src/**/*.d.ts'],
     testTimeout: process.env.CI ? 30_000 : 5_000,
     transform: {
-        '\\.tsx?$': [
-            'babel-jest',
-            {
-                presets: [
-                    ['@babel/preset-env', { targets: { node: 'current' } }],
-                    '@babel/preset-react',
-                    '@babel/preset-typescript',
-                ],
-            },
-        ],
+        '\\.tsx?$': '@sucrase/jest-plugin',
         '^.+\\.svg$': './jest.svgTransform.js',
     },
     testEnvironment: 'jsdom',
