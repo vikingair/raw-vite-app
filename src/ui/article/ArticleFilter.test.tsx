@@ -11,7 +11,7 @@ describe('<ArticleFilter />', () => {
         const input = container.querySelector('input')!;
         expect(input.value).toBe('');
 
-        fireEvent.change(input, { preventDefault: () => undefined, target: { value: 'foo' } });
+        fireEvent.change(input, { target: { value: 'foo' } });
 
         expect(input.value).toBe('foo');
     });
@@ -50,6 +50,6 @@ describe('useArticleFilter', () => {
 
         // then
         preventDefault.wasCalled(1);
-        Mock_StoreState.set.hasCallHistory({ filter: 'bar' });
+        Mock_StoreState.set.wasCalledWith({ filter: 'bar' });
     });
 });

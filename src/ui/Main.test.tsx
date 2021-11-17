@@ -1,12 +1,10 @@
 import React from 'react';
 import { render, act } from '@testing-library/react';
 import { Main } from './Main';
-import { StoreProvider } from './Store';
+import { StoreProvider, StoreState } from './Store';
 import { Spy } from 'spy4js';
 import { Webservice } from '../services/Webservice';
 import { Mock } from '../services/mocks';
-
-Spy.mockReactComponents('./article/ArticleList', 'ArticleList');
 
 const Mock$Webservice = Spy.mock(Webservice, 'getArticles');
 
@@ -29,5 +27,12 @@ describe('<Main />', () => {
 
         Mock$Webservice.getArticles.wasCalled(1);
         expect(container.querySelector('main')!.classList).not.toContain('loading');
+        expect(container.querySelectorAll('.article-list > div').length).toBe(Mock.articles.length);
+
+        act(() => {
+            StoreState.set({ filter: 'Morde' });
+        });
+
+        expect(container.querySelectorAll('.article-list > div').length).toBe(1);
     });
 });
