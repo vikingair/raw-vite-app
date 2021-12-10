@@ -7,7 +7,7 @@ const initialState: State = { articles: undefined, filter: undefined };
 
 export const Store = React.createContext<State>(initialState);
 
-export const StoreState: { set: (state: State) => void } = { set: () => undefined };
+export const StoreState: { set: (state: Partial<State>) => void } = { set: () => undefined };
 
 export type StoreProviderProps = { children: ReactNode };
 export const StoreProvider: React.VFC<StoreProviderProps> = ({ children }) => {
