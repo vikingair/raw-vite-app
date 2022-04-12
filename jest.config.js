@@ -2,7 +2,7 @@ import fs from 'fs';
 
 const THRESHOLDS = {
     statements: 64,
-    branches: 60,
+    branches: 58,
     functions: 59,
     lines: 64,
 };

@@ -3,4 +3,24 @@
   > * {
     margin: 1em;
   }
+
+  > div {
+    cursor: pointer;
+
+    &:active {
+      background-color: black;
+      background-size: 100%;
+      transition: background 0s;
+    }
+
+    &:hover {
+      outline: 0.125em solid black;
+    }
+  }
+
+  input {
+    font-size: 1em;
+    outline: none;
+    margin-top: 0;
+  }
 }
