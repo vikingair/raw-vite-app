@@ -6,8 +6,9 @@ import { StoreProvider } from './ui/Store';
 import { Demo } from './demo/Demo';
 
 const isDemo = localStorage.getItem('demo') === 'true';
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+const rootNode = document.getElementById('root') as HTMLDivElement;
+const root = ReactDOM.createRoot(rootNode);
 root.render(
     isDemo ? (
         <Demo />
