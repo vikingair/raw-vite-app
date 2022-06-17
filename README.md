@@ -9,3 +9,4 @@ Including:
 - `madge`
 - `sass`
 - script targets `pnpm lint` and `pnpm test`
+- GitHub Workflow
