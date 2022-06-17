@@ -1,10 +1,10 @@
 import fs from 'fs';
 
 const THRESHOLDS = {
-    statements: 64,
-    branches: 58,
-    functions: 59,
-    lines: 64,
+    statements: 68,
+    branches: 77,
+    functions: 66,
+    lines: 68,
 };
 const setupTestsUsesJSX = fs.existsSync('./setupTests.tsx');
 

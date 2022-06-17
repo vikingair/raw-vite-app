@@ -6,10 +6,12 @@ export default {
     process(src, filename) {
         const assetFilename = JSON.stringify(path.basename(filename));
 
-        return `
+        return {
+            code: `
       module.exports = {
         __esModule: true,
         default: ${assetFilename},
-      };`;
+      };`,
+        };
     },
 };
