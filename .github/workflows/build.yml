@@ -1,15 +1,17 @@
 name: Build
+
 on: [push, pull_request]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      env:
-        NODE_VERSION: "16"
-      with:
-        node-version: "${{ env.NODE_VERSION }}"
+        env:
+          NODE_VERSION: "16"
+        with:
+          node-version: "${{ env.NODE_VERSION }}"
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
