@@ -4,7 +4,7 @@ import { ArticleData } from '../../services/Webservice';
 
 type ArticleListProps = { articles: ArticleData[] };
 
-export const ArticleList: React.VFC<ArticleListProps> = ({ articles }) => (
+export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => (
     <div className="article-list">
         {articles.map((data, index) => (
             <Article data={data} key={index} />

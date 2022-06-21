@@ -23,7 +23,7 @@ export const useArticleFilter = (): [string, InputOnChangeHandler, FormSubmitHan
     return [value, onChange, onSubmit];
 };
 
-export const ArticleFilter: React.VFC = () => {
+export const ArticleFilter: React.FC = () => {
     const [value, onChange, onSubmit] = useArticleFilter();
 
     return (

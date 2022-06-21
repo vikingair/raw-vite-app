@@ -28,7 +28,7 @@ const articleReducer = (state: ArticleState, action: ArticleAction): ArticleStat
 
 type ArticleProps = { data: ArticleData };
 
-export const Article: React.VFC<ArticleProps> = ({ data }) => {
+export const Article: React.FC<ArticleProps> = ({ data }) => {
     const [{ zoom, color }, dispatch] = useReducer<Reducer<ArticleState, ArticleAction>>(articleReducer, initialState);
 
     const onClick = useCallback(() => dispatch({ type: 'CLICK' }), []);

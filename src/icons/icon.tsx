@@ -9,5 +9,5 @@ const _Icon = (symbol: keyof typeof Icons, { className }: IconProps = {}, width 
     </svg>
 );
 
-export const IconSearch: React.VFC<IconProps> = (props?: IconProps) => _Icon('SEARCH', props, 512);
-export const IconSpinner: React.VFC<IconProps> = (props?: IconProps) => _Icon('SPINNER', props);
+export const IconSearch: React.FC<IconProps> = (props?: IconProps) => _Icon('SEARCH', props, 512);
+export const IconSpinner: React.FC<IconProps> = (props?: IconProps) => _Icon('SPINNER', props);

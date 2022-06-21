@@ -13,26 +13,32 @@ describe('<Main />', () => {
         Mock$Webservice.getArticles.resolves(Mock.articles);
     });
 
-    it('REACT-TESTING_LIBRARY: displays a spinner while loading the articles', async () => {
+    it('displays a spinner while loading the articles', async () => {
+        // given / when
         const { container } = render(
             <StoreProvider>
                 <Main />
             </StoreProvider>
         );
 
+        // then
         Mock$Webservice.getArticles.wasCalled(1);
         expect(container.querySelector('main')!.classList).toContain('loading');
 
+        // when
         await act(__test__.nextTick);
 
+        // then
         Mock$Webservice.getArticles.wasCalled(1);
         expect(container.querySelector('main')!.classList).not.toContain('loading');
         expect(container.querySelectorAll('.article-list > div').length).toBe(Mock.articles.length);
 
+        // when
         act(() => {
             StoreState.set({ filter: 'Morde' });
         });
 
+        // then
         expect(container.querySelectorAll('.article-list > div').length).toBe(1);
     });
 });
