@@ -1,8 +1,8 @@
-import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
-import { ArticleFilter, useArticleFilter } from './ArticleFilter';
+import React from 'react';
 import { Spy } from 'spy4js';
 import { StoreState } from '../Store';
+import { ArticleFilter, useArticleFilter } from './ArticleFilter';
 
 describe('<ArticleFilter />', () => {
     it('changing the input will be displayed', () => {

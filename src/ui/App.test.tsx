@@ -1,7 +1,7 @@
-import React from 'react';
-import { App } from './App';
 import { render } from '@testing-library/react';
+import React from 'react';
 import { Spy } from 'spy4js';
+import { App } from './App';
 
 const mockReactComponents_Main = Spy.mockReactComponents('./Main', 'Main');
 const mockReactComponents_ArticleFilter = Spy.mockReactComponents('./article/ArticleFilter', 'ArticleFilter');
