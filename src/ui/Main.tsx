@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { ArticleList } from './article/ArticleList';
-import { Webservice } from '../services/Webservice';
-import { Store, StoreState } from './Store';
 import { IconSpinner } from '../icons/icon';
+import { Webservice } from '../services/Webservice';
+import { ArticleList } from './article/ArticleList';
+import { Store, StoreState } from './Store';
 
 export const Main: React.FC = () => {
     const { articles, filter } = useContext(Store);

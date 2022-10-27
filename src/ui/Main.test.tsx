@@ -1,10 +1,10 @@
-import React from 'react';
 import { render, act } from '@testing-library/react';
+import React from 'react';
+import { Spy } from 'spy4js';
+import { Mock } from '../services/mocks';
+import { Webservice } from '../services/Webservice';
 import { Main } from './Main';
 import { StoreProvider, StoreState } from './Store';
-import { Spy } from 'spy4js';
-import { Webservice } from '../services/Webservice';
-import { Mock } from '../services/mocks';
 
 const Mock$Webservice = Spy.mock(Webservice, 'getArticles');
 

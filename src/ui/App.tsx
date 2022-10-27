@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.svg';
-import { Main } from './Main';
 import { ArticleFilter } from './article/ArticleFilter';
+import { Main } from './Main';
 
 export const App: React.FC = () => (
     <div className="App">
