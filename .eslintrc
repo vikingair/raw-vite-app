@@ -7,6 +7,7 @@
   ],
   "plugins": [
     "import",
+    "simple-import-sort",
     "@typescript-eslint",
     "prettier"
   ],
@@ -33,15 +34,13 @@
       "always"
     ],
     "import/no-commonjs": "error",
-    "import/order": [
+    "simple-import-sort/imports": [
       "warn",
       {
-        "alphabetize": {
-          "order": "asc", // sort in ascending order. Options: ['ignore', 'asc', 'desc']
-          "caseInsensitive": true // ignore case. Options: [true, false]
-        }
+        "groups": [["^react$", "^[a-z]?", "^\\."]]
       }
     ],
+    "simple-import-sort/exports": "warn",
     "no-restricted-imports": [
       "error",
       {
@@ -63,7 +62,7 @@
   "overrides": [
     {
       "files": [
-        "**/*.ts?(x)"
+        "*.ts?(x)"
       ],
       "extends": [
         "plugin:@typescript-eslint/recommended"
@@ -75,10 +74,16 @@
     },
     {
       "files": [
-        "**/*.test.ts?(x)"
+        "*.test.ts?(x)"
       ],
       "rules": {
         "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "no-var": "off"
       }
     }
   ]

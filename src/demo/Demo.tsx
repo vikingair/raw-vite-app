@@ -1,5 +1,5 @@
-import '../assets/Demo.scss';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import '../assets/Demo.scss';
 
 export const Demo: React.FC = () => {
     window.console.log('!! 1 !!');
