@@ -1,5 +1,5 @@
-import { render, act } from '@testing-library/react';
 import React from 'react';
+import { act, render } from '@testing-library/react';
 import { Spy } from 'spy4js';
 import { Mock } from '../services/mocks';
 import { Webservice } from '../services/Webservice';
@@ -26,7 +26,7 @@ describe('<Main />', () => {
         expect(container.querySelector('main')!.classList).toContain('loading');
 
         // when
-        await act(__test__.nextTick);
+        await act(nextTick);
 
         // then
         Mock$Webservice.getArticles.wasCalled(1);
@@ -34,7 +34,7 @@ describe('<Main />', () => {
         expect(container.querySelectorAll('.article-list > div').length).toBe(Mock.articles.length);
 
         // when
-        act(() => {
+        await act(() => {
             StoreState.set({ filter: 'Morde' });
         });
 

@@ -1,5 +1,5 @@
-import { render, fireEvent, act } from '@testing-library/react';
 import React from 'react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Spy } from 'spy4js';
 import { StoreState } from '../Store';
 import { ArticleFilter, useArticleFilter } from './ArticleFilter';
