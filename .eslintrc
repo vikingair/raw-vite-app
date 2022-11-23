@@ -37,7 +37,7 @@
     "simple-import-sort/imports": [
       "warn",
       {
-        "groups": [["^react$", "^[a-z]?", "^\\."]]
+        "groups": [[".s?css$", "^react", "^[^.]", "^\\."]]
       }
     ],
     "simple-import-sort/exports": "warn",
