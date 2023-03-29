@@ -1,29 +1,33 @@
-import React, { useContext, useEffect } from 'react';
-import { IconSpinner } from '../icons/icon';
-import { Webservice } from '../services/Webservice';
-import { ArticleList } from './article/ArticleList';
-import { Store, StoreState } from './Store';
+import React, { useContext, useEffect } from "react";
+import { IconSpinner } from "../icons/icon";
+import { Webservice } from "../services/Webservice";
+import { ArticleList } from "./article/ArticleList";
+import { Store, StoreState } from "./Store";
 
 export const Main: React.FC = () => {
-    const { articles, filter } = useContext(Store);
+  const { articles, filter } = useContext(Store);
 
-    useEffect(() => {
-        Webservice.getArticles().then((articles) => {
-            StoreState.set({ articles });
-        });
-    }, []);
+  useEffect(() => {
+    Webservice.getArticles().then((articles) => {
+      StoreState.set({ articles });
+    });
+  }, []);
 
-    if (!articles) {
-        return (
-            <main className="loading">
-                <IconSpinner className="big-spinner" />
-            </main>
-        );
-    }
-
+  if (!articles) {
     return (
-        <main>
-            <ArticleList articles={articles.filter((article) => !filter || article.title.includes(filter))} />
-        </main>
+      <main className="loading">
+        <IconSpinner className="big-spinner" />
+      </main>
     );
+  }
+
+  return (
+    <main>
+      <ArticleList
+        articles={articles.filter(
+          (article) => !filter || article.title.includes(filter)
+        )}
+      />
+    </main>
+  );
 };

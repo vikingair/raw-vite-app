@@ -1,5 +1,8 @@
 // test utility to await all running promises
-global.nextTick = (): Promise<void> => new Promise((resolve) => setTimeout(resolve, 0));
+import { afterEach, beforeEach, expect } from "vitest";
+import { Spy } from "spy4js";
 
-// as indicator that this is an isolated module by purpose
-export {};
+global.nextTick = (): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, 0));
+
+Spy.setup({ beforeEach, afterEach, expect });

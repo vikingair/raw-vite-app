@@ -37,7 +37,21 @@
     "simple-import-sort/imports": [
       "warn",
       {
-        "groups": [[".s?css$", "^react", "^[^.]", "^\\."]]
+        "groups": [
+          [
+            "vitest",
+            // scss and css file imports
+            "\\.s?css$",
+            // side effect (e.g. `import "./foo"`)
+            "^\\u0000",
+            // every import starting with "react"
+            "^react",
+            // things that start with a letter (or digit or underscore), or `@` followed by a letter
+            "^@?\\w",
+            // internal relative paths
+            "^\\."
+          ]
+        ]
       }
     ],
     "simple-import-sort/exports": "warn",
