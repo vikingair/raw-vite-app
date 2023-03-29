@@ -1,33 +1,44 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Spy } from 'spy4js';
-import { App } from './App';
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Spy } from "spy4js";
 
-const mockReactComponents_Main = Spy.mockReactComponents('./Main', 'Main');
-const mockReactComponents_ArticleFilter = Spy.mockReactComponents('./article/ArticleFilter', 'ArticleFilter');
+vi.mock("./Main");
+const mockReactComponents_Main = Spy.mockReactComponents(
+  await import("./Main"),
+  "Main"
+);
 
-describe('App', () => {
-    beforeEach(() => {
-        mockReactComponents_Main.Main.returns('Main');
-        mockReactComponents_ArticleFilter.ArticleFilter.returns('ArticleFilter');
-    });
+vi.mock("./article/ArticleFilter");
+const mockReactComponents_ArticleFilter = Spy.mockReactComponents(
+  await import("./article/ArticleFilter"),
+  "ArticleFilter"
+);
 
-    it('renders the content', () => {
-        expect(render(<App />).container).toMatchInlineSnapshot(`
-            <div>
-              <div
-                class="App"
-              >
-                <header>
-                  <img
-                    alt="logo"
-                    src="logo.svg"
-                  />
-                  ArticleFilter
-                </header>
-                Main
-              </div>
-            </div>
-        `);
-    });
+import React from "react";
+import { render } from "@testing-library/react";
+import { App } from "./App";
+
+describe("App", () => {
+  beforeEach(() => {
+    mockReactComponents_Main.Main.returns("Main");
+    mockReactComponents_ArticleFilter.ArticleFilter.returns("ArticleFilter");
+  });
+
+  it("renders the content", () => {
+    expect(render(<App />).container).toMatchInlineSnapshot(`
+      <div>
+        <div
+          class="App"
+        >
+          <header>
+            <img
+              alt="logo"
+              src="/src/assets/logo.svg"
+            />
+            ArticleFilter
+          </header>
+          Main
+        </div>
+      </div>
+    `);
+  });
 });
