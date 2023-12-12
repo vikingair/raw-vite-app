@@ -19,13 +19,13 @@ describe("<Main />", () => {
     const { container } = render(
       <StoreProvider>
         <Main />
-      </StoreProvider>
+      </StoreProvider>,
     );
 
     // then
     Mock$Webservice.getArticles.wasCalled(1);
     expect(container.querySelector("main")!.classList.contains("loading")).toBe(
-      true
+      true,
     );
 
     // when
@@ -34,10 +34,10 @@ describe("<Main />", () => {
     // then
     Mock$Webservice.getArticles.wasNotCalled();
     expect(container.querySelector("main")!.classList.contains("loading")).toBe(
-      false
+      false,
     );
     expect(container.querySelectorAll(".article-list > div").length).toBe(
-      Mock.articles.length
+      Mock.articles.length,
     );
 
     // when

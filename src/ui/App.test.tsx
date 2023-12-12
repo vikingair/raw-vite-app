@@ -4,13 +4,13 @@ import { Spy } from "spy4js";
 vi.mock("./Main");
 const mockReactComponents_Main = Spy.mockReactComponents(
   await import("./Main"),
-  "Main"
+  "Main",
 );
 
 vi.mock("./article/ArticleFilter");
 const mockReactComponents_ArticleFilter = Spy.mockReactComponents(
   await import("./article/ArticleFilter"),
-  "ArticleFilter"
+  "ArticleFilter",
 );
 
 import React from "react";

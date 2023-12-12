@@ -8,7 +8,7 @@ type FormSubmitHandler = ChangeEventHandler<HTMLFormElement>;
 export const useArticleFilter = (): [
   string,
   InputOnChangeHandler,
-  FormSubmitHandler
+  FormSubmitHandler,
 ] => {
   const [value, setValue] = useState<string>("");
 
@@ -21,7 +21,7 @@ export const useArticleFilter = (): [
       event.preventDefault();
       StoreState.set({ filter: value });
     },
-    [value]
+    [value],
   );
 
   return [value, onChange, onSubmit];
