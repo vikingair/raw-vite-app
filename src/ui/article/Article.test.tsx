@@ -8,7 +8,7 @@ describe("Article", () => {
     const { container } = render(
       <Article
         data={{ cover: "/foo", title: "test-title", authors: "test-authors" }}
-      />
+      />,
     );
 
     const image = container.querySelector("img")!;
@@ -20,15 +20,15 @@ describe("Article", () => {
     const { container } = render(
       <Article
         data={{ cover: "/foo", title: "test-title", authors: "test-authors" }}
-      />
+      />,
     );
 
     // then
     expect(document.querySelector("input")).toBe(null);
     expect(
       (container.children[0] as HTMLDivElement).style.getPropertyValue(
-        "background-color"
-      )
+        "background-color",
+      ),
     ).toBe("");
 
     // when
@@ -38,8 +38,8 @@ describe("Article", () => {
     expect(document.querySelector("input")).toBeTruthy();
     expect(
       (container.children[0] as HTMLDivElement).style.getPropertyValue(
-        "background-color"
-      )
+        "background-color",
+      ),
     ).toBe("rgb(176, 39, 134)");
   });
 });

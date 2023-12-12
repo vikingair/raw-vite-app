@@ -6,7 +6,7 @@ type IconProps = { className?: string };
 const _Icon = (
   symbol: keyof typeof Icons,
   { className }: IconProps = {},
-  width = 512
+  width = 512,
 ) => (
   <svg
     className={className ? className + " icon" : "icon"}

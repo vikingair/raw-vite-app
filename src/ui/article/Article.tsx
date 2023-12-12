@@ -26,7 +26,7 @@ const initialState: ArticleState = { zoom: false, color: "#b02786" };
 
 const articleReducer = (
   state: ArticleState,
-  action: ArticleAction
+  action: ArticleAction,
 ): ArticleState => {
   switch (action.type) {
     case "CLICK":
@@ -49,12 +49,12 @@ export const Article: React.FC<ArticleProps> = ({ data }) => {
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) =>
       dispatch({ type: "COLOR_CHANGE", color: e.target.value }),
-    []
+    [],
   );
 
   const outerStyle = useMemo<CSSProperties | undefined>(
     () => (zoom ? zoomStyles : undefined),
-    [zoom]
+    [zoom],
   );
 
   return (

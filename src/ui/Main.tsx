@@ -25,7 +25,7 @@ export const Main: React.FC = () => {
     <main>
       <ArticleList
         articles={articles.filter(
-          (article) => !filter || article.title.includes(filter)
+          (article) => !filter || article.title.includes(filter),
         )}
       />
     </main>

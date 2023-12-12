@@ -32,7 +32,7 @@ export const Demo: React.FC = () => {
   // useCallback: with dependency
   const countChars = useCallback(
     () => setCharCount((c) => c + input.length + hits.current),
-    [input]
+    [input],
   );
 
   window.console.log("!! 7 !!", { count, charCount, hits });

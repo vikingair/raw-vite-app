@@ -18,5 +18,5 @@ root.render(
         <App />
       </StoreProvider>
     </React.StrictMode>
-  )
+  ),
 );
