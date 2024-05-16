@@ -1,5 +1,5 @@
 import "./assets/index.scss";
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { Demo } from "./demo/Demo";
 import { App } from "./ui/App";
@@ -13,10 +13,10 @@ root.render(
   isDemo ? (
     <Demo />
   ) : (
-    <React.StrictMode>
+    <StrictMode>
       <StoreProvider>
         <App />
       </StoreProvider>
-    </React.StrictMode>
+    </StrictMode>
   ),
 );

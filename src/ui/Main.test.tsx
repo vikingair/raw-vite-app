@@ -1,5 +1,4 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import React from "react";
 import { act, render } from "@testing-library/react";
 import { Spy } from "spy4js";
 import { Mock } from "../services/mocks";

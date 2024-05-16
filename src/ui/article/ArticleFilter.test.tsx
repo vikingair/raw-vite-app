@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import React from "react";
 import { act, fireEvent, render } from "@testing-library/react";
 import { Spy } from "spy4js";
 import { StoreState } from "../Store";

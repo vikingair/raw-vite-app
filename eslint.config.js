@@ -1,28 +1,33 @@
 // @ts-check
 
 import js from "@eslint/js";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error https://github.com/import-js/eslint-plugin-import/issues/2948
 import imp from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
+// support will be added soon: https://github.com/jsx-eslint/eslint-plugin-react/pull/3727
+import react from "eslint-plugin-react";
+// import reactRecommended from "eslint-plugin-react/configs/recommended.js";
 // support will be added soon: https://github.com/facebook/react/pull/28773
-// import hooksPlugin from "eslint-plugin-react-hooks";
+import reactHooks from "eslint-plugin-react-hooks";
 import simpleImpSort from "eslint-plugin-simple-import-sort";
 import ts from "typescript-eslint";
-
-/** @type {any} Not type safe sadly */
-// const hookRules = hooksPlugin.configs.recommended.rules;
 
 export default ts.config(
   { ignores: ["node_modules", "dist"] },
   {
     files: ["**/*.{j,t}s?(x)"],
-    extends: [js.configs.recommended, ...ts.configs.recommended],
+    extends: [
+      js.configs.recommended,
+      ...ts.configs.recommended,
+      // reactRecommended, // not compatible currently
+      // reactHooks.configs.recommended, // not compatible currently
+    ],
     plugins: {
       prettier,
       import: imp,
       "simple-import-sort": simpleImpSort,
-      // "react-hooks": hooksPlugin,
+      "react-hooks": reactHooks,
+      react,
     },
     rules: {
       // ...hookRules,
@@ -59,6 +64,14 @@ export default ts.config(
       ],
       "import/no-duplicates": "warn",
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
     },
   },
   {
