@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { render } from "@testing-library/react";
 import { Spy } from "spy4js";
+import { App } from "./App";
 
 vi.mock("./Main");
 const mockReactComponents_Main = Spy.mockReactComponents(
@@ -12,10 +14,6 @@ const mockReactComponents_ArticleFilter = Spy.mockReactComponents(
   await import("./article/ArticleFilter"),
   "ArticleFilter",
 );
-
-import React from "react";
-import { render } from "@testing-library/react";
-import { App } from "./App";
 
 describe("App", () => {
   beforeEach(() => {
