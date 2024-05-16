@@ -73,8 +73,8 @@ importers:
         specifier: 1.77.1
         version: 1.77.1
       spy4js:
-        specifier: 4.0.0-beta.1
-        version: 4.0.0-beta.1
+        specifier: 4.0.0
+        version: 4.0.0
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -2172,8 +2172,8 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
-  spy4js@4.0.0-beta.1:
-    resolution: {integrity: sha512-jHfymV68yvDcG5Rj6J96ShepM8kLAmDfTtRipKyozIrnHWE8PfGpTeafofHOfWZOx1bMZ/lw/lTZMl5OCme93w==}
+  spy4js@4.0.0:
+    resolution: {integrity: sha512-nYjyoYYi/mQFSWQlkJ6zSzKrIBSZlvZBZfVEERNxzc7HJ25OcGAhWU1rQeH3FpBVQ3cdLO/2Z88MpNeqhARzLw==}
 
   stack-utils@2.0.6:
     resolution: {integrity: sha512-XlkWvfIm6RmsWtNJx+uqtKLS8eqFbxUg0ZzLXqY0caEy9l7hruX8IpiDnjsLavoBgqCCR71TqWO8MaXYheJ3RQ==}
@@ -4876,7 +4876,7 @@ snapshots:
   source-map@0.6.1:
     optional: true
 
-  spy4js@4.0.0-beta.1:
+  spy4js@4.0.0:
     dependencies:
       serialize-as-code: 2.0.2
 
