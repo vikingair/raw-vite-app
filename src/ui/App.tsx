@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../assets/logo.svg";
 import { ArticleFilter } from "./article/ArticleFilter";
 import { Main } from "./Main";

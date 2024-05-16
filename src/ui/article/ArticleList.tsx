@@ -1,4 +1,3 @@
-import React from "react";
 import { ArticleData } from "../../services/Webservice";
 import { Article } from "./Article";
 

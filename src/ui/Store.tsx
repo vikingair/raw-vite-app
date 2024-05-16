@@ -1,11 +1,11 @@
-import React, { ReactNode, useCallback, useState } from "react";
+import { createContext, ReactNode, useCallback, useState } from "react";
 import { ArticleData } from "../services/Webservice";
 
 type State = { articles?: ArticleData[]; filter?: string };
 
 const initialState: State = { articles: undefined, filter: undefined };
 
-export const Store = React.createContext<State>(initialState);
+export const Store = createContext<State>(initialState);
 
 export const StoreState: { set: (state: Partial<State>) => void } = {
   set: () => undefined,

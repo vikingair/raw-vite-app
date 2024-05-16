@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useCallback, useState } from "react";
+import { ChangeEventHandler, useCallback, useState } from "react";
 import { IconSearch } from "../../icons/icon";
 import { StoreState } from "../Store";
 
