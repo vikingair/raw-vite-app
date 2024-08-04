@@ -1,16 +1,37 @@
 // @ts-check
 
+import { fixupPluginRules } from "@eslint/compat";
+import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-// @ts-expect-error https://github.com/import-js/eslint-plugin-import/issues/2948
-import imp from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
-// support will be added soon: https://github.com/jsx-eslint/eslint-plugin-react/pull/3727
 import react from "eslint-plugin-react";
-// import reactRecommended from "eslint-plugin-react/configs/recommended.js";
-// support will be added soon: https://github.com/facebook/react/pull/28773
-import reactHooks from "eslint-plugin-react-hooks";
 import simpleImpSort from "eslint-plugin-simple-import-sort";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import ts from "typescript-eslint";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+});
+
+/**
+ * source: https://github.com/import-js/eslint-plugin-import/issues/2948#issuecomment-2148832701
+ * @param {string} name the pugin name
+ * @param {string} alias the plugin alias
+ * @returns {import("eslint").ESLint.Plugin}
+ */
+function legacyPlugin(name, alias = name) {
+  const plugin = compat.plugins(name)[0]?.plugins?.[alias];
+
+  if (!plugin) {
+    throw new Error(`Unable to resolve plugin ${name} and/or alias ${alias}`);
+  }
+
+  return fixupPluginRules(plugin);
+}
 
 export default ts.config(
   { ignores: ["node_modules", "dist"] },
@@ -19,18 +40,20 @@ export default ts.config(
     extends: [
       js.configs.recommended,
       ...ts.configs.recommended,
-      // reactRecommended, // not compatible currently
-      // reactHooks.configs.recommended, // not compatible currently
+      react.configs.flat["jsx-runtime"],
     ],
     plugins: {
       prettier,
-      import: imp,
+      // see https://github.com/import-js/eslint-plugin-import/issues/2948
+      import: legacyPlugin("eslint-plugin-import", "import"),
       "simple-import-sort": simpleImpSort,
-      "react-hooks": reactHooks,
+      // will be eventually replaced by the new eslint-plugin-react-compiler when React 19 gets released
+      "react-hooks": legacyPlugin("eslint-plugin-react-hooks", "react-hooks"),
       react,
     },
     rules: {
-      // ...hookRules,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       "prettier/prettier": "warn",
       "arrow-body-style": ["warn", "as-needed"],
       "no-console": "warn",
@@ -63,6 +86,7 @@ export default ts.config(
         },
       ],
       "import/no-duplicates": "warn",
+      "import/no-commonjs": "warn",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
