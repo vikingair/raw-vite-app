@@ -6,14 +6,15 @@ on:
       - main
   pull_request:
 
+env:
+  NODE_VERSION: "20"
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        env:
-          NODE_VERSION: "20"
         with:
           node-version: "${{ env.NODE_VERSION }}"
       - uses: pnpm/action-setup@v4
