@@ -3,19 +3,19 @@
 import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
+// @ts-expect-error TS type not correctly exposed
+import importPlugin from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import simpleImpSort from "eslint-plugin-simple-import-sort";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+// eslint-disable-next-line import/no-unresolved
 import ts from "typescript-eslint";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
+const compat = new FlatCompat({ baseDirectory: __dirname });
 
 /**
  * source: https://github.com/import-js/eslint-plugin-import/issues/2948#issuecomment-2148832701
@@ -40,16 +40,15 @@ export default ts.config(
     extends: [
       js.configs.recommended,
       ...ts.configs.recommended,
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
       react.configs.flat["jsx-runtime"],
     ],
     plugins: {
       prettier,
-      // see https://github.com/import-js/eslint-plugin-import/issues/2948
-      import: legacyPlugin("eslint-plugin-import", "import"),
       "simple-import-sort": simpleImpSort,
       // will be eventually replaced by the new eslint-plugin-react-compiler when React 19 gets released
       "react-hooks": legacyPlugin("eslint-plugin-react-hooks", "react-hooks"),
-      react,
     },
     rules: {
       "react-hooks/rules-of-hooks": "error",
