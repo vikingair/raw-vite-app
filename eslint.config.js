@@ -1,12 +1,15 @@
 // @ts-check
 
 import { fixupPluginRules } from "@eslint/compat";
+// @ts-expect-error Has no valid TS export
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 // @ts-expect-error TS type not correctly exposed
 import importPlugin from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
+// @ts-expect-error Has no valid TS export
+import reactCompiler from "eslint-plugin-react-compiler";
 import simpleImpSort from "eslint-plugin-simple-import-sort";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,15 +45,18 @@ export default ts.config(
       ...ts.configs.recommended,
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
+      // @ts-expect-error Wrong type here: react.configs.flat is never undefined
       react.configs.flat["jsx-runtime"],
     ],
     plugins: {
       prettier,
+      reactCompiler,
       "simple-import-sort": simpleImpSort,
       // will be eventually replaced by the new eslint-plugin-react-compiler when React 19 gets released
       "react-hooks": legacyPlugin("eslint-plugin-react-hooks", "react-hooks"),
     },
     rules: {
+      "reactCompiler/react-compiler": "error",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "prettier/prettier": "warn",

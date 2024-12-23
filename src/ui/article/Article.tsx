@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  CSSProperties,
-  Reducer,
-  useCallback,
-  useMemo,
-  useReducer,
-} from "react";
+import { CSSProperties, useReducer } from "react";
 import { ArticleData } from "../../services/Webservice";
 
 const zoomStyles: CSSProperties = {
@@ -41,35 +34,30 @@ const articleReducer = (
 type ArticleProps = { data: ArticleData };
 
 export const Article: React.FC<ArticleProps> = ({ data }) => {
-  const [{ zoom, color }, dispatch] = useReducer<
-    Reducer<ArticleState, ArticleAction>
-  >(articleReducer, initialState);
+  const [{ zoom, color }, dispatch] = useReducer(articleReducer, initialState);
 
-  const onClick = useCallback(() => dispatch({ type: "CLICK" }), []);
-  const onChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch({ type: "COLOR_CHANGE", color: e.target.value }),
-    [],
-  );
-
-  const outerStyle = useMemo<CSSProperties | undefined>(
-    () => (zoom ? zoomStyles : undefined),
-    [zoom],
-  );
+  const outerStyle = zoom ? zoomStyles : undefined;
 
   return (
     <div
       style={outerStyle ? { ...outerStyle, backgroundColor: color } : undefined}
     >
       <img
-        onClick={onClick}
+        onClick={() => dispatch({ type: "CLICK" })}
         src={`https://cdn.pixabay.com/photo${data.cover}`}
         alt="cover"
         style={{ width: "100%" }}
       />
       <div>Title: {data.title}</div>
       <div>Authors: {data.authors}</div>
-      {zoom && <input value={color} onChange={onChange} />}
+      {zoom && (
+        <input
+          value={color}
+          onChange={(e) =>
+            dispatch({ type: "COLOR_CHANGE", color: e.target.value })
+          }
+        />
+      )}
     </div>
   );
 };

@@ -1,10 +1,16 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", {}]],
+      },
+    }),
+  ],
   server: {
     port: 3100,
     strictPort: false, // make it true, if you don't want to take next free port but fail
@@ -13,6 +19,7 @@ export default defineConfig({
     sourcemap: true, // build "*.map" files for JS sources
     manifest: false, // create a manifest.json for further processing of generated assets
   },
+  // @ts-expect-error Currently, the "vitest/config" types are not correctly overriding the type of "defineConfig"
   test: {
     environment: "jsdom",
     setupFiles: ["setupTests.ts"],
