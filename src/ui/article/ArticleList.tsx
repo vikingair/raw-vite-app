@@ -5,8 +5,8 @@ type ArticleListProps = { articles: ArticleData[] };
 
 export const ArticleList: React.FC<ArticleListProps> = ({ articles }) => (
   <div className="article-list">
-    {articles.map((data, index) => (
-      <Article data={data} key={index} />
+    {articles.map((data) => (
+      <Article data={data} key={data.id} />
     ))}
   </div>
 );

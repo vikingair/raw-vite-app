@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import { use, useEffect } from "react";
 import { IconSpinner } from "../icons/icon";
 import { Webservice } from "../services/Webservice";
 import { ArticleList } from "./article/ArticleList";
 import { Store, StoreState } from "./Store";
 
 export const Main: React.FC = () => {
-  const { articles, filter } = useContext(Store);
+  const { articles, filter } = use(Store);
 
   useEffect(() => {
     Webservice.getArticles().then((articles) => {

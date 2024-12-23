@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { ArticleData } from "../services/Webservice";
 
 type State = { articles?: ArticleData[]; filter?: string };
@@ -15,8 +15,10 @@ export type StoreProviderProps = { children: ReactNode };
 export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
   const [state, setState] = useState<State>(initialState);
 
-  StoreState.set = useCallback((updates: Partial<State>) => {
-    setState((prev) => ({ ...prev, ...updates }));
+  useEffect(() => {
+    StoreState.set = (updates: Partial<State>) => {
+      setState((prev) => ({ ...prev, ...updates }));
+    };
   }, []);
 
   return <Store.Provider value={state}>{children}</Store.Provider>;

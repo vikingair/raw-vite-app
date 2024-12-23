@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useCallback, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { IconSearch } from "../../icons/icon";
 import { StoreState } from "../Store";
 
@@ -12,17 +12,14 @@ export const useArticleFilter = (): [
 ] => {
   const [value, setValue] = useState<string>("");
 
-  const onChange = useCallback<InputOnChangeHandler>((event) => {
+  const onChange: InputOnChangeHandler = (event) => {
     setValue(event.target.value);
-  }, []);
+  };
 
-  const onSubmit = useCallback<FormSubmitHandler>(
-    (event) => {
-      event.preventDefault();
-      StoreState.set({ filter: value });
-    },
-    [value],
-  );
+  const onSubmit: FormSubmitHandler = (event) => {
+    event.preventDefault();
+    StoreState.set({ filter: value });
+  };
 
   return [value, onChange, onSubmit];
 };

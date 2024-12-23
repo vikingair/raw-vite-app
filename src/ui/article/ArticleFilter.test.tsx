@@ -26,6 +26,7 @@ describe("useArticleFilter", () => {
     const dummyCb = null as any;
     let [value, onChange, onSubmit] = ["foo", dummyCb, dummyCb];
     const DummyComponent = () => {
+      // eslint-disable-next-line reactCompiler/react-compiler
       [value, onChange, onSubmit] = useArticleFilter();
       return null;
     };

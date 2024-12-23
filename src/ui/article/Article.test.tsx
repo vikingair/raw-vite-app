@@ -6,7 +6,12 @@ describe("Article", () => {
   it("uses correct image src", () => {
     const { container } = render(
       <Article
-        data={{ cover: "/foo", title: "test-title", authors: "test-authors" }}
+        data={{
+          cover: "/foo",
+          title: "test-title",
+          authors: "test-authors",
+          id: "test-id",
+        }}
       />,
     );
 
@@ -18,7 +23,12 @@ describe("Article", () => {
     // when - initially rendered
     const { container } = render(
       <Article
-        data={{ cover: "/foo", title: "test-title", authors: "test-authors" }}
+        data={{
+          cover: "/foo",
+          title: "test-title",
+          authors: "test-authors",
+          id: "test-id",
+        }}
       />,
     );
 

@@ -1,5 +1,6 @@
+/* eslint-disable reactCompiler/react-compiler */
 import "../assets/Demo.scss";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Demo: React.FC = () => {
   window.console.log("!! 1 !!");
@@ -26,14 +27,8 @@ export const Demo: React.FC = () => {
 
   const hits = useRef(0);
 
-  // useCallback: without dependencies
-  const increment = useCallback(() => setCount((c) => c + 1), []);
-
-  // useCallback: with dependency
-  const countChars = useCallback(
-    () => setCharCount((c) => c + input.length + hits.current),
-    [input],
-  );
+  const increment = () => setCount((c) => c + 1);
+  const countChars = () => setCharCount((c) => c + input.length + hits.current);
 
   window.console.log("!! 7 !!", { count, charCount, hits });
 
