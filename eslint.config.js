@@ -45,7 +45,6 @@ export default ts.config(
       ...ts.configs.recommended,
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
-      // @ts-expect-error Wrong type here: react.configs.flat is never undefined
       react.configs.flat["jsx-runtime"],
     ],
     plugins: {
