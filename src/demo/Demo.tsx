@@ -1,4 +1,3 @@
-/* eslint-disable reactCompiler/react-compiler */
 import "../assets/Demo.scss";
 import { useEffect, useRef, useState } from "react";
 

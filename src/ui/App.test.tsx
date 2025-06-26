@@ -3,6 +3,8 @@ import { render } from "@testing-library/react";
 import { Spy } from "spy4js";
 import { App } from "./App";
 
+vi.mock("../assets/logo.svg", () => ({ default: "/mocked/logo.svg" }));
+
 vi.mock("./Main");
 const mockReactComponents_Main = Spy.mockReactComponents(
   await import("./Main"),
@@ -30,7 +32,7 @@ describe("App", () => {
           <header>
             <img
               alt="logo"
-              src="/src/assets/logo.svg"
+              src="/mocked/logo.svg"
             />
             ArticleFilter
           </header>
