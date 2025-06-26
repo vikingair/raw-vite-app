@@ -19,7 +19,6 @@ export default defineConfig({
     sourcemap: true, // build "*.map" files for JS sources
     manifest: false, // create a manifest.json for further processing of generated assets
   },
-  // @ts-expect-error Currently, the "vitest/config" types are not correctly overriding the type of "defineConfig"
   test: {
     environment: "jsdom",
     setupFiles: ["setupTests.ts"],

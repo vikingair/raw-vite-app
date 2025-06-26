@@ -1,40 +1,14 @@
 // @ts-check
 
-import { fixupPluginRules } from "@eslint/compat";
-// @ts-expect-error Has no valid TS export
-import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-// @ts-expect-error TS type not correctly exposed
 import importPlugin from "eslint-plugin-import";
 import prettier from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
-// @ts-expect-error Has no valid TS export
 import reactCompiler from "eslint-plugin-react-compiler";
+import reactHooks from "eslint-plugin-react-hooks";
 import simpleImpSort from "eslint-plugin-simple-import-sort";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 // eslint-disable-next-line import/no-unresolved
 import ts from "typescript-eslint";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({ baseDirectory: __dirname });
-
-/**
- * source: https://github.com/import-js/eslint-plugin-import/issues/2948#issuecomment-2148832701
- * @param {string} name the pugin name
- * @param {string} alias the plugin alias
- * @returns {import("eslint").ESLint.Plugin}
- */
-function legacyPlugin(name, alias = name) {
-  const plugin = compat.plugins(name)[0]?.plugins?.[alias];
-
-  if (!plugin) {
-    throw new Error(`Unable to resolve plugin ${name} and/or alias ${alias}`);
-  }
-
-  return fixupPluginRules(plugin);
-}
 
 export default ts.config(
   { ignores: ["node_modules", "dist"] },
@@ -46,18 +20,15 @@ export default ts.config(
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
       react.configs.flat["jsx-runtime"],
+      reactHooks.configs["recommended-latest"],
     ],
     plugins: {
       prettier,
       reactCompiler,
       "simple-import-sort": simpleImpSort,
-      // will be eventually replaced by the new eslint-plugin-react-compiler when React 19 gets released
-      "react-hooks": legacyPlugin("eslint-plugin-react-hooks", "react-hooks"),
     },
     rules: {
       "reactCompiler/react-compiler": "error",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
       "prettier/prettier": "warn",
       "arrow-body-style": ["warn", "as-needed"],
       "no-console": "warn",
